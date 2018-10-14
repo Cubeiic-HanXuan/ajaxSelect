@@ -1,2 +1,3 @@
-# androidLibrary
-这装安卓的包
+#ajaxSelect
+实现异步搜索
+实时搜索
