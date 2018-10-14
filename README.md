@@ -24,3 +24,6 @@
      
 插件效果
 ===
+
+![qiniu.com](http://cubeiic.com/ajaxSelect.gif) 
+
