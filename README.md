@@ -27,3 +27,61 @@
 
 ![qiniu.com](http://cubeiic.com/ajaxSelect.gif) 
 
+插件使用
+===
+* 一、首先引用ajaxSelect.js 文件
+```JavaScript
+<script type="text/javascript" src="ajaxSelect.js"></script>
+```
+* 二、调用插件
+```JavaScript
+var ajaxUrl = "/license/vehicleChange/getVehicleAjaxSelect";
+var $select = $("#ajaxSelect").ajaxSelect({
+    ajaxUrl:ajaxUrl, //初始化搜索地址（必须参数）
+    param:'vehicleNo', //条件搜索参数 （必须参数）
+    defkv:['vehicleNo','id'], //返回数据 的key (必传参数)
+    limit:30,
+    selected:0,
+});
+```
+* 三、参数解释
+
+    ajaxUrl:''          //异步请求地址 (必传参数)
+    
+    param:''            //搜索必传参数名 (必传参数)
+    
+    pageIndex:1         //初始分页页码
+    
+    defkv:[]            //返回数据 的key (必传参数)
+    
+    delay:200           // ajax回调 延时
+    
+    width:100           // input 宽度
+    
+    height:30           // input 高度
+    
+    selected:-1         //初始化数据 默认选中项,-1为不选中
+    
+    limit:20            //最大显示条数,0为不限制
+    
+    maxheight:250       //最大显示高度
+    
+    hoverbg:'#189FD9'   //悬浮背景色
+    
+    activebg:'#5FB878'  //选中项背景色
+    
+    style:''            //自定义样式
+ 
+  说明:使用该插件，select内置函数依然可以使用
+ 
+  ###### 如何使用ajaxSelect：
+  
+   通过 jQuery.ajaxSelect({ajaxUrl:ajaxUrl,param:'driverName',defkv:['driverName','personId']});初始化插件
+   
+   通过$select.on("change", function(){});绑定事件 ==> 等价于  $("#selectId").on("change")
+   
+   通过 $("#selectId").val() 拿到最新的值
+   
+   通过 $("#selectId").trigger("setEditSelectValue", 2); 设置选中的值为 2
+   
+   通过 $("#selectId").trigger("optionChange") 触发 更新 option 的值
