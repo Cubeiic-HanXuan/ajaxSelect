@@ -1,5 +1,5 @@
 /**
- * @author HanXuan
+ * @author chendb
  * @date 2018-10-11 15:19:57
  * 实现功能：下拉框 带搜索 可实时查询 异步
  * 参数：
@@ -44,6 +44,7 @@
                         \n.m-input-select .m-list-item:hover{background:'+extendCfg.hoverbg+';}\
                         \n.m-input-select .m-list-item-active{background:'+extendCfg.activebg+';}\
                         \n.m-message-select{width:100%;height:50px;text-align:center;line-height: 50px;background-color: #bfcad2}\
+                        \n.m-select-hide{display:none!important}\
 						\n'+extendCfg.style;
             let style = $("<style>"+ cssText +"</style>")[0];
 
@@ -84,7 +85,7 @@
                 let $input = $("<input type='text' class='layui-input input-click'/>");
                 // let $wrapper = $("<div class='m-list-wrapper'><ul class='m-list'></ul></div>");
                 let $wrapper = $("<ul class='m-list'></ul>");
-                $div = $sel.wrap($div).hide().addClass("m-select").parent();
+                $div = $sel.wrap($div).addClass("m-select-hide").parent();
                 $div.append($input).append("<span class='m-input-ico'></span>").append($wrapper);
 
                 // 遮罩层显示 + 隐藏
@@ -327,13 +328,6 @@
                     return false;
                 });
 
-                //移除layui 渲染
-                let $id = this.id;
-                layDef = $id;
-
-                setTimeout(function(){
-                    $('#'+$id).next().remove();
-                }, 100);
                 setTimeout(function(){
                     // for ie
                     wrapper.hide();
@@ -370,9 +364,3 @@
         };
     })();
 })(jQuery);
-
-//移除layui 框架自带select
-let layDef;
-function deleteLay(){
-    $('#'+layDef).next().remove();
-}
