@@ -6,6 +6,7 @@
  *   ajaxUrl:''          //异步请求地址 (必传参数)
  *   param:''            //搜索必传参数名 (必传参数)
  *   pageIndex:1         //初始分页页码
+ *   size:30             //初始分页条数
  *   defkv:[]            //返回数据 的key (必传参数)
  *   delay:200           // ajax回调 延时
  *   width:100           // input 宽度
@@ -63,6 +64,7 @@
                 ajaxUrl:'',
                 param:'',
                 pageIndex:1,
+                size:30,
                 defkv:[],
                 delay:200,
                 width:100,
@@ -169,7 +171,7 @@
                             }
                             ajaxTimer = setTimeout(function(){
                                 val = $.trim($input.val());
-                                ajaxUrl += '?pageIndex='+ extendCfg.pageIndex + '&' + extendCfg.param + '=' + encodeURI(val);
+                                ajaxUrl += '?pageIndex='+ extendCfg.pageIndex +'&size=' + extendCfg.size + '&' + extendCfg.param + '=' + encodeURI(val);
                                 ajaxQuery(ajaxUrl,{},function(data){
                                     if(filter){//初始数据回调,可以过滤
                                         data = filter(data)||data;
@@ -335,7 +337,7 @@
 
                 if(extendCfg.ajaxUrl){
 
-                    ajaxQuery(extendCfg.ajaxUrl+'?pageIndex='+ extendCfg.pageIndex,{},function(data){
+                    ajaxQuery(extendCfg.ajaxUrl+'?pageIndex='+ extendCfg.pageIndex +'&size=' + extendCfg.size,{},function(data){
                         //console.log(data);
                         if(filter){//初始数据回调,可以过滤
                             data = filter(data,'isInit')||data;
