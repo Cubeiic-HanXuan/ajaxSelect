@@ -47,7 +47,7 @@ var $select = $("#ajaxSelect").ajaxSelect({
 
 ## 三、参数解释
 
-   ajaxUrl:''          //异步请求地址 (必传参数)
+    ajaxUrl:''          //异步请求地址 (必传参数)
    
     param:''            //搜索必传参数名 (必传参数)
     
@@ -76,21 +76,21 @@ var $select = $("#ajaxSelect").ajaxSelect({
     style:''            //自定义样式
  
 ## 四、说明
-  1.使用该插件: select内置函数依然可以使用
+    1.使用该插件: select内置函数依然可以使用
   
-  2.回调函数： function (data) {
-   //初始数据回调,可以过滤
-   console.log(data.data);
-   }
+    2.回调函数： function (data) {
+    //初始数据回调,可以过滤
+    console.log(data.data);
+     }
  
 # 如何使用ajaxSelect：
   
-   通过 jQuery.ajaxSelect({ajaxUrl:ajaxUrl,param:'driverName',defkv:['driverName','personId']});初始化插件
+    通过 jQuery.ajaxSelect({ajaxUrl:ajaxUrl,param:'driverName',defkv:['driverName','personId']});初始化插件
    
-   通过$select.on("change", function(){});绑定事件 ==> 等价于  $("#selectId").on("change")
+    通过$select.on("change", function(){});绑定事件 ==> 等价于  $("#selectId").on("change")
    
-   通过 $("#selectId").val() 拿到最新的值
+    通过 $("#selectId").val() 拿到最新的值
    
-   通过 $("#selectId").trigger("setEditSelectValue", 2); 设置选中的值为 2
+    通过 $("#selectId").trigger("setEditSelectValue", 2); 设置选中的值为 2
    
-   通过 $("#selectId").trigger("optionChange") 触发 更新 option 的值
+    通过 $("#selectId").trigger("optionChange") 触发 更新 option 的值
