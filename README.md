@@ -1,5 +1,4 @@
-编写插件初衷
-===
+# 编写插件初衷
 >公司前端选用的是layui 框架，由于layui 有很多地方侵入性很强，对用户的随心所欲的拓展增加了难度。
 突然某一天公司有这样一个需求：
 在一个新增页面中通过驾驶员ID搜索驾驶员的所有相关信息，并把这些详细信息回填到表单对应的地方，当然了驾驶员ID是来自于动态加载的下拉框，点击下拉框的option拿到ID。下拉选的数据是从后台动态加载的。
@@ -9,8 +8,7 @@
 
 **经过作者反复的查阅资料，这个ajaxSelect 实时异步搜索插件就这样诞生了**
 
-关于插件
-===
+# 关于插件
 * ajaxSelect插件是拓展jquery 库 实现的 完美支持JavaScript
 * 实现的功能：
 
@@ -22,18 +20,20 @@
 
      支持自定义配置
      
-插件效果
-===
+# 插件效果
 
 ![qiniu.com](http://cubeiic.com/ajaxSelect.gif) 
 
-插件使用
-===
-* 一、首先引用ajaxSelect.js 文件
+# 插件使用
+
+## 一、首先引用ajaxSelect.js 文件
+
 ```JavaScript
 <script type="text/javascript" src="ajaxSelect.js"></script>
 ```
-* 二、调用插件
+
+## 二、调用插件
+
 ```JavaScript
 var ajaxUrl = "/license/vehicleChange/getVehicleAjaxSelect";
 var $select = $("#ajaxSelect").ajaxSelect({
@@ -44,11 +44,14 @@ var $select = $("#ajaxSelect").ajaxSelect({
     selected:0,
 });
 ```
-* 三、参数解释
 
-    ajaxUrl:''          //异步请求地址 (必传参数)
-    
+## 三、参数解释
+
+   ajaxUrl:''          //异步请求地址 (必传参数)
+   
     param:''            //搜索必传参数名 (必传参数)
+    
+    expandParam:{}      //搜索非必传参数名(搜索条件传参)
     
     pageIndex:1         //初始分页页码
     
@@ -60,7 +63,7 @@ var $select = $("#ajaxSelect").ajaxSelect({
     
     height:30           // input 高度
     
-    selected:-1         //初始化数据 默认选中项,-1为不选中
+    selected:true       //初始化数据 默认选中项,false为不选中
     
     limit:20            //最大显示条数,0为不限制
     
@@ -72,9 +75,15 @@ var $select = $("#ajaxSelect").ajaxSelect({
     
     style:''            //自定义样式
  
-  说明:使用该插件，select内置函数依然可以使用
+## 四、说明
+  1.使用该插件: select内置函数依然可以使用
+  
+  2.回调函数： function (data) {
+   //初始数据回调,可以过滤
+   console.log(data.data);
+   }
  
-  ###### 如何使用ajaxSelect：
+# 如何使用ajaxSelect：
   
    通过 jQuery.ajaxSelect({ajaxUrl:ajaxUrl,param:'driverName',defkv:['driverName','personId']});初始化插件
    
