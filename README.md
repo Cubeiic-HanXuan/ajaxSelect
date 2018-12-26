@@ -22,7 +22,7 @@
      
 # 插件效果
 
-![qiniu.com](http://cubeiic.com/ajaxSelect.gif) 
+![github.com](https://github.com/Cubeiic-HanXuan/ajaxSelect/blob/master/ajaxSelect.gif?t=1545789597312) 
 
 # 插件使用
 
