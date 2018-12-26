@@ -5,13 +5,14 @@
  * 参数：
  *   ajaxUrl:''          //异步请求地址 (必传参数)
  *   param:''            //搜索必传参数名 (必传参数)
+ *   expandParam:{}      //搜索非必传参数名(搜索条件传参)
  *   pageIndex:1         //初始分页页码
  *   size:30             //初始分页条数
  *   defkv:[]            //返回数据 的key (必传参数)
  *   delay:200           // ajax回调 延时
  *   width:100           // input 宽度
  *   height:30           // input 高度
- *   selected:-1         //初始化数据 默认选中项,-1为不选中
+ *   selected:true      //初始化数据 默认选中项,false为不选中
  *   limit:20            //最大显示条数,0为不限制
  *   maxheight:250       //最大显示高度
  *   hoverbg:'#189FD9'   //悬浮背景色
@@ -19,6 +20,11 @@
  *   style:''            //自定义样式
  *
  * 说明:使用该插件，select内置函数依然可以使用
+ *
+ * 回调函数： function (data) {
+ *  //初始数据回调,可以过滤
+ * console.log(data.data);
+ * }
  *
  * 如何使用ajaxSelect：
  *  通过 jQuery.ajaxSelect({ajaxUrl:ajaxUrl,param:'driverName',defkv:['driverName','personId']});初始化插件
@@ -60,16 +66,18 @@
         }
 
         return function(cfg,filter,cb){
+
             let defcfg = {
                 ajaxUrl:'',
                 param:'',
+                expandParam:{},
                 pageIndex:1,
                 size:30,
                 defkv:[],
                 delay:200,
                 width:100,
                 height:30,
-                selected:-1,
+                selected:true,
                 limit:20,
                 maxheight:250,
                 hoverbg:'#189FD9',
@@ -172,7 +180,8 @@
                             ajaxTimer = setTimeout(function(){
                                 val = $.trim($input.val());
                                 ajaxUrl += '?pageIndex='+ extendCfg.pageIndex +'&size=' + extendCfg.size + '&' + extendCfg.param + '=' + encodeURI(val);
-                                ajaxQuery(ajaxUrl,{},function(data){
+                                ajaxQuery(ajaxUrl,extendCfg.expandParam,function(data){
+
                                     if(filter){//初始数据回调,可以过滤
                                         data = filter(data)||data;
                                     }
@@ -232,7 +241,6 @@
                 function resetOption(e,showSelected){
                     let html = '', val = '';
                     $sel.find("option").each(function(i, v){
-
                         if(v.selected && !val){
                             val = v.text;
                         };
@@ -337,7 +345,7 @@
 
                 if(extendCfg.ajaxUrl){
 
-                    ajaxQuery(extendCfg.ajaxUrl+'?pageIndex='+ extendCfg.pageIndex +'&size=' + extendCfg.size,{},function(data){
+                    ajaxQuery(extendCfg.ajaxUrl+'?pageIndex='+ extendCfg.pageIndex +'&size=' + extendCfg.size,extendCfg.expandParam,function(data){
                         //console.log(data);
                         if(filter){//初始数据回调,可以过滤
                             data = filter(data,'isInit')||data;
@@ -354,8 +362,10 @@
 
                         $sel.empty();
                         $sel.append(html);
-//					$sel.children("option:eq(0)").attr("selected","selected");
-                        $sel.on("optionChange", resetOption).trigger("optionChange",true);
+//					    $sel.children("option:eq(0)").attr("selected","selected");
+                        if (extendCfg.selected) {
+                            $sel.on("optionChange", resetOption).trigger("optionChange",extendCfg.selected);
+                        }
                         cb&&cb(data,'isInit');
                     });
                 }
